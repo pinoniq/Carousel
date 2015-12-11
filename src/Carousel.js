@@ -4,7 +4,7 @@
  * don't configure, code
  *
  * @author  Jeroen pinoniq Meeus
- * @version 1.0
+ * @version 1.1.0
  */
 
 ;(function(window){
@@ -68,7 +68,7 @@
             itemId += this.numItems;
         }
 
-        //Kind of useless do anything if nothing changes
+        //Kind of useless to do anything if nothing changes
         if (this.currentItem === itemId) {
             return;
         }
@@ -158,7 +158,7 @@
     };
 
     /**
-     * Add a listener to the given event and animationHandler
+     * Add an optionResolver to the given event and animationHandler
      *
      * @param  {[type]}   animationIdentifier [description]
      * @param  {[type]}   eventIdentifier     [description]
@@ -166,7 +166,7 @@
      *                                        to pass to the animationHandler
      * @return {void}
      */
-    Carousel.prototype.on = function(animationIdentifier, eventIdentifier, callback) {
+    Carousel.prototype.addOptionResolver = function(animationIdentifier, eventIdentifier, callback) {
         this.listeners[animationIdentifier][eventIdentifier].push(callback);
     };
 

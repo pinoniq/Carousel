@@ -1,6 +1,12 @@
 # Carousel
 A code-oriented carousel
 
+current version: 1.1.0
+
+Changelog 1.1.0:
+ * Moved to SemVer
+ * Renamed .on to .addOptionResolver
+
 ## What?
 Carousel is a small library that only has one dependency:
 
@@ -36,14 +42,14 @@ As seen above, our animationHandler is passed a bunch of options.
 For Carousel to know what options to send to the animationHandler, we need to add some option generators:
 
 ```
-carousel.on('myAnimationHandler', 'show', function() {
+carousel.addOptionResolver('myAnimationHandler', 'show', function() {
     // this === the item that will be shown
     return {
         'opacity': 1
     };
 });
 
-carousel.on('myAnimationHandler', 'hide', function() {
+carousel.addOptionResolver('myAnimationHandler', 'hide', function() {
     // this === the item that will be hidden
     return {
         'opacity': 0
@@ -53,7 +59,7 @@ carousel.on('myAnimationHandler', 'hide', function() {
 
 Here we return the options to be send to the animationHandler with the `myAnimationHandler` key. The signature for on is:
 ```
-carousel.on(animationHandlerKey, action, functionThatReturnsAnOptionsObject);
+carousel.addOptionResolver(animationHandlerKey, action, callableThatReturnsAnOptionsObject);
 ```
 
 This basically means you can add different animationHandlers that each have multiple option generators.
@@ -62,7 +68,7 @@ This basically means you can add different animationHandlers that each have mult
 Carousel provides the option generator with two parameters:
 
 ```
-carousel.on('myAnimationHandler', 'show', function(reverse, itemId) {
+carousel.addOptionResolver('myAnimationHandler', 'show', function(reverse, itemId) {
     // this === the item that will be shown
     return {
         'opacity': 1
